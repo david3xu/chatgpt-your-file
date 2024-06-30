@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -H 10.128.138.175",
     "build": "next build",
     "start": "next start",
     "gen:types": "supabase gen types typescript --local > supabase/functions/_lib/database.ts"
