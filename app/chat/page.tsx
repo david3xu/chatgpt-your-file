@@ -8,6 +8,12 @@ import { Database } from '@/supabase/functions/_lib/database';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useChat } from 'ai/react';
 
+// export const corsHeaders = {
+//   'Access-Control-Allow-Origin': '*',
+//   'Access-Control-Allow-Headers':
+//     'authorization, x-client-info, apikey, content-type',
+// };
+
 export default function ChatPage() {
   const supabase = createClientComponentClient<Database>();
 
@@ -22,6 +28,7 @@ export default function ChatPage() {
     });
 
   const isReady = !!generateEmbedding;
+  console.log("isReady", isReady);
 
   return (
     <div className="max-w-6xl flex flex-col items-center w-full h-full">
@@ -73,6 +80,7 @@ export default function ChatPage() {
             });
 
             const embedding = JSON.stringify(Array.from(output.data));
+            console.log("embedding", embedding);
 
             const {
               data: { session },
@@ -85,6 +93,9 @@ export default function ChatPage() {
             handleSubmit(e, {
               options: {
                 headers: {
+                  'Access-Control-Allow-Origin': '*',
+                  'Access-Control-Allow-Headers':
+                    'authorization, x-client-info, apikey, content-type',
                   authorization: `Bearer ${session.access_token}`,
                 },
                 body: {

@@ -5,6 +5,7 @@ import OpenAI from 'openai';
 import { Database } from '../_lib/database.ts';
 
 const openai = new OpenAI({
+  baseURL: Deno.env.get('OPENAI_BASE_URL'),
   apiKey: Deno.env.get('OPENAI_API_KEY'),
 });
 
@@ -116,7 +117,7 @@ Deno.serve(async (req) => {
     ];
 
   const completionStream = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo-0125',
+    model: 'gpt-4-0125-preview:latest',
     messages: completionMessages,
     max_tokens: 1024,
     temperature: 0,
