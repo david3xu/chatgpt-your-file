@@ -19,7 +19,8 @@ export default async function ChatPage() {
 
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
-      api: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/chat`,
+      // api: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/chat`,
+      api: `https://cqtqmeauhlenxktawqkg.supabase.co/functions/v1/chat`,
     });
 
   console.log("messages", messages);
