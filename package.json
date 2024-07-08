@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev -H 10.128.138.175",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "gen:types": "supabase gen types typescript --local > supabase/functions/_lib/database.ts"
@@ -12,7 +12,7 @@
     "@supabase/auth-helpers-nextjs": "latest",
     "@supabase/supabase-js": "^2.44.2",
     "@tanstack/react-query": "^4.35.7",
-    "@xenova/transformers": "^2.17.2",
+    "@xenova/transformers": "^2.5.0",
     "ai": "^2.2.37",
     "autoprefixer": "10.4.15",
     "bufferutil": "^4.0.8",
