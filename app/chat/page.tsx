@@ -8,7 +8,8 @@ import { Database } from '@/supabase/functions/_lib/database';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useChat } from 'ai/react';
 import { pipeline } from '@xenova/transformers';
-import { OpenAI } from "openai";
+import OpenAI from 'openai';
+
 
 
 export default function ChatPage() {
