@@ -20,7 +20,7 @@ export default function ChatPage() {
   //   'Supabase/gte-small'
   // );
 
-  const openaiBaseUrl = "http://10.128.138.175:11434/v1";
+  const openaiBaseUrl = "http://10.128.138.175:8000/v1";
   const openaiApiKey = "ollama-ai";
 
   const openai = new OpenAI({
