@@ -14,9 +14,9 @@ import { Database } from '../_lib/database.ts';
 // console.log("openaiBaseUrl", openaiBaseUrl);
 // console.log("openaiApiKey", openaiApiKey);
 
-// const openaiBaseUrl = "http://10.128.138.175:11434/v1";
+const openaiBaseUrl = "http://10.128.138.175:11434/v1";
 // const openaiBaseUrl = "http://10.128.138.175:8000/v1";
-const openaiBaseUrl = "http://host.docker.internal:11434/v1/";
+// const openaiBaseUrl = "http://host.docker.internal:11434/v1/";
 const openaiApiKey = "ollama-ai";
 
 const openai = new OpenAI({
