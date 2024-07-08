@@ -24,6 +24,8 @@ npx supabase migration up #--network-id 10.128.138.175
 
 # serve function
 supabase functions serve --env-file=.env.local --network-id 10.128.138.175
+"dev": "next dev -H 10.128.138.175",
+yarn dev
 
 # docker network create -o 'com.docker.network.bridge.host_binding_ipv4=10.128.138.175' local-network
 # npx supabase@beta start --network-id local-network
