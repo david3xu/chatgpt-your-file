@@ -71,7 +71,7 @@ export default function ChatPage() {
               throw new Error('Unable to generate embeddings');
             }
 
-            const output = await generateEmbedding(input, {
+            const output = await (await generateEmbedding)(input, {
               pooling: 'mean',
               normalize: true,
             });
