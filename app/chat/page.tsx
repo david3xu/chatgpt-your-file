@@ -9,10 +9,10 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useChat } from 'ai/react';
 import { pipeline } from '@xenova/transformers';
 
-export default function ChatPage() {
+export default async function ChatPage() {
   const supabase = createClientComponentClient<Database>();
 
-  const generateEmbedding = pipeline(
+  const generateEmbedding = await pipeline(
     'feature-extraction',
     'Supabase/gte-small'
   );
@@ -71,7 +71,7 @@ export default function ChatPage() {
               throw new Error('Unable to generate embeddings');
             }
 
-            const output = await (await generateEmbedding)(input, {
+            const output = await generateEmbedding(input, {
               pooling: 'mean',
               normalize: true,
             });
