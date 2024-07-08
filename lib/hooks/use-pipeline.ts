@@ -1,4 +1,4 @@
-import { Pipeline, PretrainedOptions, Tensor } from '@xenova/transformers';
+import { Pipeline, PipelineType, PretrainedOptions, Tensor } from '@xenova/transformers';
 import { useEffect, useState } from 'react';
 import {
   InitEventData,
@@ -60,7 +60,7 @@ export function usePipeline(
 
     worker.postMessage({
       type: 'init',
-      args: [task, model, transferableOptions],
+      args: [task as PipelineType, model, transferableOptions],
     } satisfies InitEventData);
 
     return () => {
