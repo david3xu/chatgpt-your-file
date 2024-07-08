@@ -26,6 +26,7 @@ export default function ChatPage() {
   const openai = new OpenAI({
     baseURL: openaiBaseUrl,
     apiKey: openaiApiKey,
+    dangerouslyAllowBrowser: true,
   });
 
 

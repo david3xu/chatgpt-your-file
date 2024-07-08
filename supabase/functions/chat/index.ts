@@ -22,6 +22,7 @@ const openaiApiKey = "ollama-ai";
 const openai = new OpenAI({
   baseURL: openaiBaseUrl,
   apiKey: openaiApiKey,
+  dangerouslyAllowBrowser: true,
 });
 
 // const generateEmbedding = usePipeline(
