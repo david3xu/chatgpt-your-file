@@ -7,11 +7,12 @@ import { cn } from '@/lib/utils';
 import { Database } from '@/supabase/functions/_lib/database';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useChat } from 'ai/react';
+import { pipeline } from '@xenova/transformers';
 
 export default function ChatPage() {
   const supabase = createClientComponentClient<Database>();
 
-  const generateEmbedding = usePipeline(
+  const generateEmbedding = pipeline(
     'feature-extraction',
     'Supabase/gte-small'
   );
