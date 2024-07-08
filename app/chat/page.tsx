@@ -8,14 +8,25 @@ import { Database } from '@/supabase/functions/_lib/database';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useChat } from 'ai/react';
 import { pipeline } from '@xenova/transformers';
+import { OpenAI } from "openai";
 
-export default async function ChatPage() {
+
+export default function ChatPage() {
   const supabase = createClientComponentClient<Database>();
 
-  const generateEmbedding = await pipeline(
-    'feature-extraction',
-    'Supabase/gte-small'
-  );
+  // const generateEmbedding = await pipeline(
+  //   'feature-extraction',
+  //   'Supabase/gte-small'
+  // );
+
+  const openaiBaseUrl = "http://10.128.138.175:11434/v1";
+  const openaiApiKey = "ollama-ai";
+
+  const openai = new OpenAI({
+    baseURL: openaiBaseUrl,
+    apiKey: openaiApiKey,
+  });
+
 
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
@@ -25,6 +36,7 @@ export default async function ChatPage() {
   console.log("messages", messages);
   console.log("input", input);
 
+  const generateEmbedding = true;
   const isReady = !!generateEmbedding;
 
   return (
@@ -71,12 +83,20 @@ export default async function ChatPage() {
               throw new Error('Unable to generate embeddings');
             }
 
-            const output = await generateEmbedding(input, {
-              pooling: 'mean',
-              normalize: true,
+            // const output = await generateEmbedding(input, {
+            //   pooling: 'mean',
+            //   normalize: true,
+            // });
+            const embeddingResponse = await openai.embeddings.create({
+              model: "gpt-4-0125-preview:latest",
+              input: [input],
             });
+          
+            const embeddingStringNumber  = embeddingResponse.data[0].embedding;
+            const embedding = JSON.stringify(embeddingStringNumber);
+            // console.log("embedding", embedding);
 
-            const embedding = JSON.stringify(Array.from(output.data));
+            // const embedding = JSON.stringify(Array.from(output.data));
 
             const {
               data: { session },
