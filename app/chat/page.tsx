@@ -7,24 +7,24 @@ import { cn } from '@/lib/utils';
 import { Database } from '@/supabase/functions/_lib/database';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useChat } from 'ai/react';
-import { pipeline } from '@xenova/transformers';
 
-export default async function ChatPage() {
+export default function ChatPage() {
   const supabase = createClientComponentClient<Database>();
 
-  const generateEmbedding = await pipeline(
+  const generateEmbedding = usePipeline(
     'feature-extraction',
     'Supabase/gte-small'
   );
 
+  // // Create a feature extraction pipeline
+  // const generateEmbedding = await pipeline('feature-extraction', 'nomic-ai/nomic-embed-text-v1.5', {
+  //   // quantized: false, // Comment out this line to use the quantized version
+  // });
+
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
-      // api: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/chat`,
-      api: `https://cqtqmeauhlenxktawqkg.supabase.co/functions/v1/chat`,
+      api: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/chat`,
     });
-
-  console.log("messages", messages);
-  console.log("input", input);
 
   const isReady = !!generateEmbedding;
 
@@ -76,6 +76,8 @@ export default async function ChatPage() {
               pooling: 'mean',
               normalize: true,
             });
+
+            console.log("output", output)
 
             const embedding = JSON.stringify(Array.from(output.data));
 

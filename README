@@ -12,11 +12,9 @@ npx supabase secrets set OPENAI_BASE_URL=http://10.128.138.175:11434/v1/
 npx supabase secrets set OPENAI_BASE_URL=http://10.128.138.175:8000/v1/
 supabase start --network-id 10.128.138.175
 supabase status --network-id 10.128.138.175
-
-
-
 supabase db reset --network-id 10.128.138.175
 npx supabase migration up #--network-id 10.128.138.175
+npx supabase functions serve 
 
 # supabase password: z9OgePuYbKndpIhx
 
@@ -38,7 +36,7 @@ yarn dev
 npx supabase init
 npx supabase start
 npx supabase status
-npx supabase migrate up
+npx supabase migration up
 npx supabase functions serve 
 
 
